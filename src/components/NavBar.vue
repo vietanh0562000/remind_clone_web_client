@@ -1,41 +1,48 @@
 <template>
   <v-app-bar app color="primary" dark>
-    <div class="d-flex align-center">
-      <v-img
-        alt="Vuetify Logo"
-        class="shrink mr-2"
-        contain
-        src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-        transition="scale-transition"
-        width="40"
-      />
-
-      <v-img
-        alt="Vuetify Name"
-        class="shrink mt-1 hidden-sm-and-down"
-        contain
-        min-width="100"
-        src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-        width="100"
-      />
-    </div>
-
+    <v-toolbar-title>Honyomi</v-toolbar-title>
     <v-spacer></v-spacer>
-
     <v-btn
-      href="https://github.com/vuetifyjs/vuetify/releases/latest"
-      target="_blank"
+      :key="link.name"
+      v-for="link in links"
+      @click="navigateTo(link.path)"
       text
+      height="100%"
+      >{{ link.name }}</v-btn
     >
-      <span class="mr-2">Latest Release</span>
-      <v-icon>mdi-open-in-new</v-icon>
-    </v-btn>
+    <v-btn text height="100%" @click="switchTheme"
+      ><v-icon>{{
+        $vuetify.theme.dark ? "mdi-brightness-4" : "mdi-brightness-6"
+      }}</v-icon></v-btn
+    >
   </v-app-bar>
 </template>
 
 <script>
 export default {
   name: "NavBar",
+  data() {
+    return {
+      links: [
+        {
+          path: "/",
+          name: "Home",
+        },
+        {
+          path: "/about",
+          name: "About",
+        },
+      ],
+    };
+  },
+  methods: {
+    navigateTo(path) {
+      this.$router.push(path);
+    },
+    switchTheme() {
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+    },
+  },
 };
 </script>
 
