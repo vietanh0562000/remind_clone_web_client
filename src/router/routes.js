@@ -13,4 +13,9 @@ export default [
     component: () =>
       import(/* webpackChunkName: "about" */ "./views/About.vue"),
   },
+  {
+    path: "/signin",
+    name: "SignIn",
+    component: () => import("./views/SignIn.vue"),
+  },
 ];

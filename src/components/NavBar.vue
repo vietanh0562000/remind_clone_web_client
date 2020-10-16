@@ -32,6 +32,10 @@ export default {
           path: "/about",
           name: "About",
         },
+        {
+          path: "/signin",
+          name: "SignIn",
+        },
       ],
     };
   },
